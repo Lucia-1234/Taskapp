@@ -329,3 +329,57 @@ document.addEventListener('DOMContentLoaded', function() {
  * 7. Agregar emojis o reacciones a los mensajes
  * 8. Implementar búsqueda/filtrado de mensajes
  */
+
+// ============================================
+// 9. BÚSQUEDA DE USUARIO
+// ============================================
+
+// Selección de elementos relacionados con la búsqueda
+const formUsuario = document.getElementById("formUsuario");
+const resultadoUsuario = document.getElementById("resultadoUsuario");
+const formTarea = document.getElementById("formTarea");
+
+// Capturamos el evento de envío del formulario de usuario
+    if (formUsuario) {
+    formUsuario.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Evita recargar la página
+
+        const usuarioIdInput = document.getElementById("usuarioId");
+        if (!usuarioIdInput) {
+        console.warn("⚠️ Falta el campo usuarioId en el HTML");
+        return;
+        }
+
+        const usuarioId = usuarioIdInput.value;
+
+        try {
+        // Consultamos el servidor
+        const respuesta = await fetch(`https://jsonplaceholder.typicode.com/users/${usuarioId}`);
+        const usuario = await respuesta.json();
+
+        if (usuario.id) {
+            // Usuario encontrado → mostramos datos en el contenedor
+            if (resultadoUsuario) {
+            resultadoUsuario.textContent = `Nombre: ${usuario.name} | Email: ${usuario.email} | Teléfono: ${usuario.phone}`;
+            }
+            if (formTarea) {
+            formTarea.style.display = "block"; // habilitamos formulario de tareas
+            }
+        } else {
+            // Usuario no encontrado
+            if (resultadoUsuario) {
+            resultadoUsuario.textContent = "Usuario no registrado en el sistema.";
+            }
+            if (formTarea) {
+            formTarea.style.display = "none";
+            }
+        }
+        } catch (error) {
+        if (resultadoUsuario) {
+            resultadoUsuario.textContent = `Error en la búsqueda: ${error.message}`;
+        }
+        }
+    });
+}
+
+
