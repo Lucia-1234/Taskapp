@@ -14,7 +14,28 @@
             <p class="header__subtitle">Practica la manipulación del DOM en tiempo real</p>
         </header>
 
-        <!-- Formulario de entrada -->
+    <!-- Formulario de búsqueda de usuario -->
+    <section class="form-section">
+        <div class="card">
+            <h2 class="card__title">Buscar Usuario</h2>
+            <form id="formUsuario" class="form" novalidate>
+            <div class="form__group">
+                <label for="usuarioId" class="form__label">ID de Usuario</label>
+                <input 
+                type="number" 
+                id="usuarioId" 
+                class="form__input" 
+                placeholder="Ingrese ID de usuario"
+                required
+                >
+            </div>
+            <button type="submit" class="btn btn--primary">Buscar Usuario</button>
+            </form>
+            <div id="resultadoUsuario" class="form__error"></div>
+        </div>
+        </section>
+
+        <!-- Formulario de entrada
         <section class="form-section">
             <div class="card">
                 <h2 class="card__title">Nuevo Mensaje</h2>
@@ -54,18 +75,18 @@
                     </button>
                 </form>
             </div>
-        </section>
+        </section> -->
 
         <!-- Área de mensajes -->
-        <section class="messages-section">
+        <!-- <section class="messages-section">
             <div class="messages-header">
                 <h2 class="messages-header__title">Mensajes Publicados</h2>
                 <span class="messages-header__count" id="messageCount">0 mensajes</span>
             </div>
             
-            <div id="messagesContainer" class="messages-container">
+            <div id="messagesContainer" class="messages-container"> -->
                 <!-- Los mensajes se agregarán aquí dinámicamente -->
-                <div class="messages-empty" id="emptyState">
+                <!-- <div class="messages-empty" id="emptyState">
                     <svg class="messages-empty__icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
@@ -73,7 +94,7 @@
                     <p class="messages-empty__subtext">Completa el formulario para agregar tu primer mensaje</p>
                 </div>
             </div>
-        </section>
+        </section>  -->
 
         <!-- Footer informativo -->
         <footer class="footer">
