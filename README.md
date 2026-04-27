@@ -214,4 +214,4 @@ En la industria, el software que no está publicado no existe. Esto vincula el r
 
 ---
 
-Este repositorio es propiedad del equipo de desarrollo y se rige por las políticas de formación profesional integral del SENA.
+Este repositorio es propiedad del equipo de desarrollo y se rige por las políticas de formación profesional integral del SENA.  
