@@ -1,0 +1,107 @@
+{
+  "users": [
+    { "id": 1, 
+      "name": "Ana Torres", 
+      "active": true 
+    },
+
+    { "id": 2, 
+      "name": "Carlos Gómez", 
+      "active": true 
+    },
+
+    { "id": 3, 
+      "name": "María López", 
+      "active": false 
+    },
+
+    { "id": 4, 
+      "name": "Juan Pérez", 
+      "active": true 
+    },
+
+    { "id": 5, 
+      "name": "Laura Martínez", 
+      "active": true 
+    },
+
+    { "id": 6, 
+      "name": "Pedro Sánchez", 
+      "active": false 
+    },
+    { "id": 7, 
+      "name": "Sofía Ramírez", 
+      "active": true 
+    },
+    { "id": 8, 
+      "name": "Andrés Morales", 
+      "active": true 
+    },
+    { "id": 9, 
+      "name": "Valentina Cruz", 
+      "active": true 
+    },
+    { "id": 10, 
+      "name": "Diego Herrera", 
+      "active": false 
+    }
+  ],
+
+  "task": [
+    { "id": 1, 
+      "userId": 1, 
+      "title": "Introducción a las API", 
+      "Tarea": "Investigar componentes de las API" 
+    },
+
+    { "id": 2, 
+      "userId": 1, 
+      "title": "HTTP en la práctica", 
+      "Tarea": "Describir el uso de métodos HTTP" 
+    },
+
+    { "id": 3, 
+      "userId": 2, 
+      "title": "Arquitectura web", 
+      "Tarea": "crear una estructura donde se evidencie la comunicación Cliente-servidor" 
+    },
+
+    { "id": 4, 
+      "userId": 4, 
+      "title": "JavaScript async", 
+      "Tarea": "Describe que son las Promesas y async/await" 
+    },
+    { "id": 5, 
+      "userId": 5, 
+      "title": "APIs REST", 
+      "Tarea": "Aplicar buenas prácticas en el diseño de APIs" 
+    },
+    { "id": 6, 
+      "userId": 7, 
+      "title": "Manejo de datos", 
+      "Tarea": "Map, filter, find" 
+    },
+    { "id": 7, 
+      "userId": 9, 
+      "title": "Testing de APIs", 
+      "Tarea": "Realizar pruebas básicas de testing" 
+    },
+    { "id": 8, 
+      "userId": 9, 
+      "title": "Seguridad", 
+      "Tarea": "Aplicar buenas prácticas de seguridad en el desarrollo de APIs" 
+    },
+
+    { "id": 9, 
+      "userId": 10, 
+      "title": "Documentación", 
+      "Tarea": "Realizar la documentación de una API utilizando herramientas como Swagger" 
+    },
+
+    { "id": 10, 
+      "userId": 2, 
+      "title": "Integraciones", 
+      "Tarea": "Completar la integración con servicios externos" }
+  ]
+
+}
