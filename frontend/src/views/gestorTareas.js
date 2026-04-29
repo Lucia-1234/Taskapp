@@ -1,58 +1,10 @@
-import { enviar, obtener } from '../helpers/index.js';
-import { taskCard } from '../components/taskCard.js';
+import { enviar } from '../helpers/index.js';
 
 // Variables globales de este módulo
 // Guardará la información del usuario actual una vez que se encuentre en la búsqueda
 let usuarioActual = null;
 // Llevará la cuenta de cuántas tareas hemos agregado a la interfaz
 let contadorTareas = 0;
-
-/**
- * 
- * Cargar tareas desde el servidor 
- * cumple con la terea tecnica 1 y 2
- */
-
-export const cargarTareasServidor = async (userId) => {
-  const tasksContainer = document.querySelector('#tasksContainer');
-  const taskCount = document.querySelector('#taskCount');
-
-  if (!tasksContainer) return; // Validación de seguridad
-
-  try {
-    //1. obtener las tareas del usuario desde el servidor usando el helper 'obtener' (método GET)
-    const tareas = await obtener('task?userId=${userId}');
-
-    //2.  Limpiamos el contenedor antes de agregar las tareas
-    tasksContainer.innerHTML = '';
-    // Reiniciamos el contador 
-    contadorTareas = 0; 
-
-    //3. Si el servidor devuelve tareas, las recorremos y creamos una tarjeta para cada una usando el componente 'taskCard'
-    if (tareas && tareas.length > 0) {
-      tareas.forEach(tarea => {
-        // Llamamos a la función 'taskCard' que devuelve un elemento HTML con la información de la tarea
-        const tarjeta = taskCard(tarea);
-        tasksContainer.appendChild(tarjeta);
-        contadorTareas++;
-      });
-    } else {
-      // Si no hay tareas, mostramos un mensaje informativo en el contenedor
-      tasksContainer.innerHTML = '<p class="info-empty"> Este usuario no tiene tareas registradas aún. </p>';
-    }
-
-    
-    // 4. Actualizamos el contador visual en pantalla con la cantidad de tareas obtenidas, y agregamos una 's' al texto si no es 1 (plural vs singular)
-    if (taskCount) {
-      taskCount.textContent = `${contadorTareas} tarea${contadorTareas !== 1 ? 's' : ''}`;
-    } 
-  } catch (error) {
-    // Si la petición falla (por ej. si se cae el internet), capturamos el error y mostramos un mensaje de error en el contenedor
-    console.error('Error al cargar las tareas:', error);
-    // REQUISITO 2: Registro de tareas -> Manejar errores de conexión al servidor mostrando un mensaje de error en el contenedor de tareas.
-    tasksContainer.innerHTML = '<p style="color: var(--color-error)">Error al conectar con el servidor.</p>';
-  }
-};
 
 /**
  * Función: inicializarVistaTareas
@@ -143,8 +95,6 @@ export const manejarCambioUsuario = (usuario) => {
     // Le quitamos la clase CSS 'hidden' (que tiene display:none) para hacerlos visibles
     taskSection.classList.remove('hidden');
     tasksListSection.classList.remove('hidden');
-
-    cargarTareasServidor(usuario.id); // Cargamos las tareas del usuario encontrado para mostrarlas en pantalla
     
     // Vaciamos el contenedor de tarjetas por si acaso pertenecían al usuario anterior
     // if (tasksContainer) tasksContainer.innerHTML = '';
