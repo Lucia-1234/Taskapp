@@ -52,7 +52,7 @@ export const inicializarVistaTareas = () => {
 
     try {
       // Usamos el helper 'enviar' (método POST) para mandar los datos al servidor (JSONPlaceholder)
-      const resultado = await enviar('https://jsonplaceholder.typicode.com/todos', nuevaTarea);
+      const resultado = await enviar('task', nuevaTarea);
       
       // JSONPlaceholder devuelve un objeto con un ID nuevo. Lo combinamos con nuestra descripción y estado
       // y llamamos a la función que pinta la tarjeta en la pantalla
@@ -97,7 +97,7 @@ export const manejarCambioUsuario = (usuario) => {
     tasksListSection.classList.remove('hidden');
     
     // Vaciamos el contenedor de tarjetas por si acaso pertenecían al usuario anterior
-    if (tasksContainer) tasksContainer.innerHTML = '';
+    // if (tasksContainer) tasksContainer.innerHTML = '';
     // Reiniciamos el contador de tareas a cero
     contadorTareas = 0;
     // Actualizamos el contador visual en pantalla
