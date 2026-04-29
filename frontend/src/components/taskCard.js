@@ -1,4 +1,4 @@
-export const taskCard = (task) => {
+export const taskCard = (task, onEliminar) => {
     const card = document.createElement("div");
     card.classList.add("message-card")
     
@@ -10,8 +10,17 @@ export const taskCard = (task) => {
     tarea.classList.add("message-card__content")
     tarea.textContent = task.Tarea
 
+    const botonEliminar = document.createElement("button");
+    botonEliminar.className = ("btn btn--primary");
+    botonEliminar.textContent = "Eliminar";
 
-    card.append(title,tarea)
+    card.append(title,tarea,botonEliminar)
+
+
+    botonEliminar.addEventListener("click", e => {
+        onEliminar(task);
+    })
+
 
     return card
 }

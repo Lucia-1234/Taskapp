@@ -4,6 +4,7 @@
  */
 import { taskCard } from '../components/taskCard.js';
 import { obtener } from '../helpers/get.js';
+import { delet } from '../helpers/delete.js'
 import { inicializarBusquedaUsuario } from '../controllers/buscarUsuario.js';
 import { inicializarVistaTareas, manejarCambioUsuario } from '../controllers/gestorTareas.js';
 
@@ -24,22 +25,37 @@ inicializarBusquedaUsuario((usuario) => {
 
 const form = document.querySelector("#formUsuario");
 const userId = document.querySelector("#usuarioId")
-const tareas = await obtener("task")
+const tareaForm = document.querySelector("#formTarea")
 const tareaContainer = document.querySelector(".messages-container")
 
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", async(e) => {
   e.preventDefault();
+  await actualizarLista();
+})
+
+tareaForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await actualizarLista();
+})
+
+const eliminarTarea = async(tarea) => {
+  delet(`task/${tarea.id}`,tarea) 
+  await actualizarLista();
+}
+
+const actualizarLista = async() => {
   tareaContainer.innerHTML = "";
+  const tareas = await obtener("task");
+
   tareas.forEach(tarea => {
 
-    if (tarea.userId != userId.value) {
-      console.log("no")
-      return;
-    }
-    const tarjeta = taskCard(tarea);
-    tareaContainer.append(tarjeta)
-    console.log("container después:", tareaContainer.innerHTML)
-    
-  })
+  if (tarea.userId != userId.value) {
+    console.log("no")
+    return;
+  }
+  const tarjeta = taskCard(tarea,eliminarTarea);
+  console.log("ACTUALIZADO." + tarea.title)
+  tareaContainer.append(tarjeta)  
 })
+}
