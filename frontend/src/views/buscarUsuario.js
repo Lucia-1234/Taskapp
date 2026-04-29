@@ -35,7 +35,7 @@ export const inicializarBusquedaUsuario = (alEncontrarUsuario) => {
     try {
       // REQUISITO 1: Búsqueda del usuario -> Consultar el servidor para verificar si el usuario existe.
       // Usamos el helper 'obtener' (get) para pedir la información a la API usando el ID
-      const usuario = await obtener(`https://jsonplaceholder.typicode.com/users/${usuarioId}`);
+      const usuario = await obtener(`users/${usuarioId}`);
       
       // Verificamos si el servidor nos devolvió un usuario real (que tenga la propiedad 'id')
       if (usuario && usuario.id) {

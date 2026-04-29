@@ -2,9 +2,12 @@
  * Archivo: post.js
  * Propósito: Proveer una función auxiliar para enviar datos al servidor (crear recursos) mediante HTTP POST.
  */
-export const enviar = async (url, datos) => {
+
+const url = "http://localhost:3000/"
+
+export const enviar = async (endpoint, datos) => {
   try {
-    const respuesta = await fetch(url, {
+    const respuesta = await fetch(`${url}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
