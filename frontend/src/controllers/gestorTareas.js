@@ -109,7 +109,7 @@ export const inicializarVistaTareas = () => {
     try {
       // Usamos el helper 'enviar' (método POST) para mandar los datos al servidor (JSONPlaceholder)
       const resultado = await enviar('task', nuevaTarea);
-
+      
       formTarea.reset();
 
     } catch (error) {
@@ -159,4 +159,5 @@ export const manejarCambioUsuario = (usuario) => {
     tasksListSection.classList.add('hidden');
   }
 };
+
 
