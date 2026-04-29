@@ -360,6 +360,8 @@ SECCIÓN DE MENSAJES
     border-left: 4px solid var(--color-primary);
     animation: slideIn var(--transition-slow) ease-out;
     transition: all var(--transition-base);
+    display: flex;
+    justify-content: space-between;
 }
 
 .message-card:hover {
