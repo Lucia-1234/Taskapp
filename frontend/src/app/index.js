@@ -4,9 +4,9 @@
  */
 import { taskCard } from '../components/taskCard.js';
 import { obtener } from '../helpers/get.js';
-import { inicializarBusquedaUsuario } from '../views/buscarUsuario.js';
-import { inicializarVistaTareas, manejarCambioUsuario } from '../views/gestorTareas.js';
 import { delet } from '../helpers/delete.js'
+import { inicializarBusquedaUsuario } from '../controllers/buscarUsuario.js';
+import { inicializarVistaTareas, manejarCambioUsuario } from '../controllers/gestorTareas.js';
 
 console.log('Aplicación iniciada (Módulo App)');
 
@@ -15,7 +15,7 @@ console.log('Aplicación iniciada (Módulo App)');
 // Por lo tanto, no necesitamos usar DOMContentLoaded.
 
 // 1. Inicializamos la vista de tareas
-// inicializarVistaTareas();  
+   inicializarVistaTareas();  
 
 // 2. Inicializamos la vista de usuarios.
 inicializarBusquedaUsuario((usuario) => {

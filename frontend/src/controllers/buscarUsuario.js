@@ -43,7 +43,7 @@ export const inicializarBusquedaUsuario = (alEncontrarUsuario) => {
         // Cambiamos el color del texto a verde (éxito)
         resultadoUsuario.style.color = 'var(--color-success)';
         // Insertamos el nombre y el correo del usuario en el contenedor de resultados
-        resultadoUsuario.textContent = `Usuario encontrado: ${usuario.name} | ${usuario.email}`;
+        resultadoUsuario.textContent = `Usuario encontrado: ${usuario.name} | Estado: ${usuario.active}`;
         
         // Llamamos a la función callback avisando al resto del sistema que sí encontramos a alguien
         if (typeof alEncontrarUsuario === 'function') {
