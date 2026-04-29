@@ -21,10 +21,8 @@ export const cargarTareasServidor = async (userId) => {
 
   try {
     //1. obtener las tareas del usuario desde el servidor usando el helper 'obtener' (método GET)
-    const tareas = await obtener('task?userId=${userId}');
+    const tareas = await obtener(`task?userId=${userId}`);
 
-    //2.  Limpiamos el contenedor antes de agregar las tareas
-    tasksContainer.innerHTML = '';
     // Reiniciamos el contador 
     contadorTareas = 0; 
 

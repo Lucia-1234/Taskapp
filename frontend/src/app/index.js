@@ -25,17 +25,23 @@ inicializarBusquedaUsuario((usuario) => {
 
 const form = document.querySelector("#formUsuario");
 const userId = document.querySelector("#usuarioId")
+const tareaForm = document.querySelector("#formTarea")
 const tareaContainer = document.querySelector(".messages-container")
 
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", async(e) => {
   e.preventDefault();
-  actualizarLista();
+  await actualizarLista();
 })
 
-const eliminarTarea = (tarea) => {
+tareaForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await actualizarLista();
+})
+
+const eliminarTarea = async(tarea) => {
   delet(`task/${tarea.id}`,tarea) 
-  actualizarLista();
+  await actualizarLista();
 }
 
 const actualizarLista = async() => {
@@ -49,6 +55,7 @@ const actualizarLista = async() => {
     return;
   }
   const tarjeta = taskCard(tarea,eliminarTarea);
+  console.log("ACTUALIZADO." + tarea.title)
   tareaContainer.append(tarjeta)  
 })
 }
