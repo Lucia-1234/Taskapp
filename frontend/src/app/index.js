@@ -6,6 +6,7 @@ import { taskCard } from '../components/taskCard.js';
 import { obtener } from '../helpers/get.js';
 import { inicializarBusquedaUsuario } from '../views/buscarUsuario.js';
 import { inicializarVistaTareas, manejarCambioUsuario } from '../views/gestorTareas.js';
+import { delet } from '../helpers/delete.js'
 
 console.log('Aplicación iniciada (Módulo App)');
 
@@ -24,22 +25,30 @@ inicializarBusquedaUsuario((usuario) => {
 
 const form = document.querySelector("#formUsuario");
 const userId = document.querySelector("#usuarioId")
-const tareas = await obtener("task")
 const tareaContainer = document.querySelector(".messages-container")
 
 
 form.addEventListener("submit", e => {
   e.preventDefault();
+  actualizarLista();
+})
+
+const eliminarTarea = (tarea) => {
+  delet(`task/${tarea.id}`,tarea) 
+  actualizarLista();
+}
+
+const actualizarLista = async() => {
   tareaContainer.innerHTML = "";
+  const tareas = await obtener("task");
+
   tareas.forEach(tarea => {
 
-    if (tarea.userId != userId.value) {
-      console.log("no")
-      return;
-    }
-    const tarjeta = taskCard(tarea);
-    tareaContainer.append(tarjeta)
-    console.log("container después:", tareaContainer.innerHTML)
-    
-  })
+  if (tarea.userId != userId.value) {
+    console.log("no")
+    return;
+  }
+  const tarjeta = taskCard(tarea,eliminarTarea);
+  tareaContainer.append(tarjeta)  
 })
+}
