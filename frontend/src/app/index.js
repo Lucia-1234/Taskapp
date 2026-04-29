@@ -1,0 +1,21 @@
+/**
+ * Archivo: index.js (App Principal)
+ * Propósito: Actuar como el punto de inicio (entry point) de la aplicación, conectando las diferentes vistas.
+ */
+import { inicializarBusquedaUsuario } from '../views/buscarUsuario.js';
+import { inicializarVistaTareas, manejarCambioUsuario } from '../views/gestorTareas.js';
+
+console.log('Aplicación iniciada (Módulo App)');
+
+// Como index.js se carga con type="module", el navegador ya sabe que 
+// debe esperar a que el HTML (DOM) esté construido antes de ejecutar este código.
+// Por lo tanto, no necesitamos usar DOMContentLoaded.
+
+// 1. Inicializamos la vista de tareas
+inicializarVistaTareas();
+
+// 2. Inicializamos la vista de usuarios.
+inicializarBusquedaUsuario((usuario) => {
+  // Cuando la vista de usuarios encuentre o no a alguien, nos pasará el resultado aquí
+  manejarCambioUsuario(usuario);
+});
