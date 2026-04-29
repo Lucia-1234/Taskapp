@@ -14,7 +14,7 @@ console.log('Aplicación iniciada (Módulo App)');
 // Por lo tanto, no necesitamos usar DOMContentLoaded.
 
 // 1. Inicializamos la vista de tareas
-   inicializarVistaTareas();  
+  inicializarVistaTareas();  
 
 // 2. Inicializamos la vista de usuarios.
 inicializarBusquedaUsuario((usuario) => {
