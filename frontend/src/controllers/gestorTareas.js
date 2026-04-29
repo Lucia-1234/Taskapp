@@ -45,24 +45,23 @@ export const inicializarVistaTareas = () => {
     // REQUISITO 2: Registro de tareas -> Validar que todos los campos del formulario de tareas estén completos.
     // Comprobamos en JavaScript si el título o la descripción están en blanco
     // (A esto se suma que en HTML también pusimos el atributo 'required')
-    if (!nuevaTarea.title || !nuevaTarea.description) {
-      alert('Por favor completa todos los campos.'); // Mostramos una alerta al usuario
+    if (!nuevaTarea.title) {
+      alert('El titulo de la tarea esta vacio; Por favor ingrese un titulo para la tarea'); // Mostramos una alerta al usuario
       return; // Detenemos el código aquí, no se envía nada al servidor
+    }
+    if (!nuevaTarea.description) {
+      alert('PLa descripcion de la tarea esta vacia; Por favor ingrese una descripcion para la tarea.'); // Mostramos una alerta al usuario
+      return; // Detenemos el código aquí, no se envía nada al servidor
+    }
+
+    if (nuevaTarea.title && nuevaTarea.description){
+      alert('La tarea fue Agregada con exito')
     }
 
     try {
       // Usamos el helper 'enviar' (método POST) para mandar los datos al servidor (JSONPlaceholder)
       const resultado = await enviar('task', nuevaTarea);
-      
-      // JSONPlaceholder devuelve un objeto con un ID nuevo. Lo combinamos con nuestra descripción y estado
-      // y llamamos a la función que pinta la tarjeta en la pantalla
-      agregarTareaAlDOM({
-        ...resultado, 
-        description: nuevaTarea.description, 
-        status: nuevaTarea.status
-      });
 
-      // Limpiamos los campos del formulario dejándolos en blanco para una próxima tarea
       formTarea.reset();
 
     } catch (error) {
@@ -72,6 +71,7 @@ export const inicializarVistaTareas = () => {
     }
   });
 };
+
 
 /**
  * Función: manejarCambioUsuario
@@ -110,40 +110,3 @@ export const manejarCambioUsuario = (usuario) => {
   }
 };
 
-/**
- * Función: agregarTareaAlDOM
- * Propósito: Crear elementos HTML dinámicos para mostrar las tarjetas de tareas.
- */
-const agregarTareaAlDOM = (tarea) => {
-  // Buscamos el contenedor padre donde insertaremos las tarjetas
-  const tasksContainer = document.querySelector('#tasksContainer');
-  const taskCount = document.querySelector('#taskCount');
-  
-  if (!tasksContainer) return; // Validación de seguridad
-
-  // Creamos un nuevo elemento <div> en la memoria
-  const tarjeta = document.createElement('div');
-  // Le asignamos la clase de diseño que ya teníamos en CSS
-  tarjeta.className = 'message-card';
-
-  // Usamos template literals (comillas invertidas) para inyectar HTML dinámicamente con las variables
-  tarjeta.innerHTML = `
-    <div class="message-card__header">
-        <div class="message-card__user">
-            <span class="message-card__username">${tarea.title}</span>
-        </div>
-        <span class="message-card__timestamp">Estado: <strong>${tarea.status}</strong></span>
-    </div>
-    <div class="message-card__content">${tarea.description}</div>
-  `;
-
-  // Insertamos la tarjeta creada al final de la lista dentro del contenedor principal
-  tasksContainer.appendChild(tarjeta);
-  
-  // Aumentamos en 1 la cantidad de tareas contabilizadas
-  contadorTareas++;
-  // Actualizamos el número visual, y agregamos una 's' al texto si no es 1 (plural vs singular)
-  if (taskCount) {
-    taskCount.textContent = `${contadorTareas} tarea${contadorTareas !== 1 ? 's' : ''}`;
-  }
-};
