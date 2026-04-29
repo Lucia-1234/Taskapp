@@ -8,7 +8,6 @@ let usuarioActual = null;
 let contadorTareas = 0;
 
 /**
- * 
  * Cargar tareas desde el servidor 
  * cumple con la terea tecnica 1 y 2
  */
@@ -40,7 +39,6 @@ export const cargarTareasServidor = async (userId) => {
       // Si no hay tareas, mostramos un mensaje informativo en el contenedor
       tasksContainer.innerHTML = '<p class="info-empty"> Este usuario no tiene tareas registradas aún. </p>';
     }
-
     
     // 4. Actualizamos el contador visual en pantalla con la cantidad de tareas obtenidas, y agregamos una 's' al texto si no es 1 (plural vs singular)
     if (taskCount) {
