@@ -4,7 +4,8 @@
  */
 import { taskCard } from '../components/taskCard.js';
 import { obtener } from '../helpers/get.js';
-import { delet } from '../helpers/delete.js'
+import { delet } from '../helpers/delete.js';
+import { actualizar } from '../helpers/put.js';
 import { inicializarBusquedaUsuario } from '../controllers/buscarUsuario.js';
 import { inicializarVistaTareas, manejarCambioUsuario } from '../controllers/gestorTareas.js';
 
@@ -54,8 +55,37 @@ const actualizarLista = async() => {
     console.log("no")
     return;
   }
-  const tarjeta = taskCard(tarea,eliminarTarea);
+  const tarjeta = taskCard(tarea, eliminarTarea, editarTarea);
   console.log("ACTUALIZADO." + tarea.title)
   tareaContainer.append(tarjeta)  
 })
 }
+
+const editarTarea = async (tarea) => {
+  // Pedimos los dos campos, pre-rellenando con los valores actuales
+  const nuevoTitulo = prompt("Nuevo título:", tarea.title);
+  if (nuevoTitulo === null) return; // canceló
+
+  const nuevaDescripcion = prompt("Nueva descripción:", tarea.description);
+  if (nuevaDescripcion === null) return; // canceló
+
+  // Validaciones básicas, igual que en gestorTareas.js
+  if (!nuevoTitulo.trim()) {
+    alert("El título no puede estar vacío.");
+    return;
+  }
+  if (!nuevaDescripcion.trim()) {
+    alert("La descripción no puede estar vacía.");
+    return;
+  }
+
+  // Spread del objeto original para no perder userId, status, etc.
+  const tareaActualizada = {
+    ...tarea,
+    title: nuevoTitulo.trim(),
+    description: nuevaDescripcion.trim()
+  };
+
+  await actualizar(`task/${tarea.id}`, tareaActualizada);
+  await actualizarLista();
+};

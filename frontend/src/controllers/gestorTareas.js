@@ -23,7 +23,7 @@ export const cargarTareasServidor = async (userId) => {
     const tareas = await obtener(`task?userId=${userId}`);
 
     // Reiniciamos el contador 
-    contadorTareas = 0; 
+    contadorTareas = 0;
 
     //3. Si el servidor devuelve tareas, las recorremos y creamos una tarjeta para cada una usando el componente 'taskCard'
     if (tareas && tareas.length > 0) {
@@ -35,18 +35,24 @@ export const cargarTareasServidor = async (userId) => {
       });
     } else {
       // Si no hay tareas, mostramos un mensaje informativo en el contenedor
-      tasksContainer.innerHTML = '<p class="info-empty"> Este usuario no tiene tareas registradas aún. </p>';
+      const mensajeVacio = document.createElement("p");
+      mensajeVacio.classList.add("info-empty");
+      mensajeVacio.textContent = "Este usuario no tiene tareas registradas aún.";
+      tasksContainer.appendChild(mensajeVacio);
     }
-    
+
     // 4. Actualizamos el contador visual en pantalla con la cantidad de tareas obtenidas, y agregamos una 's' al texto si no es 1 (plural vs singular)
     if (taskCount) {
       taskCount.textContent = `${contadorTareas} tarea${contadorTareas !== 1 ? 's' : ''}`;
-    } 
+    }
   } catch (error) {
     // Si la petición falla (por ej. si se cae el internet), capturamos el error y mostramos un mensaje de error en el contenedor
     console.error('Error al cargar las tareas:', error);
     // REQUISITO 2: Registro de tareas -> Manejar errores de conexión al servidor mostrando un mensaje de error en el contenedor de tareas.
-    tasksContainer.innerHTML = '<p style="color: var(--color-error)">Error al conectar con el servidor.</p>';
+    const mensajeError = document.createElement("p");
+    mensajeError.classList.add("texto--error");
+    mensajeError.textContent = "Error al conectar con el servidor.";
+    tasksContainer.appendChild(mensajeError);
   }
 };
 
@@ -65,7 +71,7 @@ export const inicializarVistaTareas = () => {
     // REQUISITO 2: Registro de tareas -> Enviar la información de la tarea sin recargar la página.
     // Usamos preventDefault para evitar la recarga automática del navegador
     evento.preventDefault();
-    
+
     // Si la variable 'usuarioActual' está vacía (null), no permitimos continuar
     if (!usuarioActual) return;
 
@@ -83,7 +89,7 @@ export const inicializarVistaTareas = () => {
       // Aquí tomamos el 'id' del usuario que buscamos previamente y se lo asignamos a la tarea
       userId: usuarioActual.id,
       // Propiedad extra para mantener compatibilidad con JSONPlaceholder
-      completed: estadoInput.value === 'completada' 
+      completed: estadoInput.value === 'completada'
     };
 
     // REQUISITO 2: Registro de tareas -> Validar que todos los campos del formulario de tareas estén completos.
@@ -98,14 +104,14 @@ export const inicializarVistaTareas = () => {
       return; // Detenemos el código aquí, no se envía nada al servidor
     }
 
-    if (nuevaTarea.title && nuevaTarea.description){
+    if (nuevaTarea.title && nuevaTarea.description) {
       alert('La tarea fue Agregada con exito')
     }
 
     try {
       // Usamos el helper 'enviar' (método POST) para mandar los datos al servidor (JSONPlaceholder)
       const resultado = await enviar('task', nuevaTarea);
-      
+
       formTarea.reset();
 
     } catch (error) {
@@ -141,7 +147,7 @@ export const manejarCambioUsuario = (usuario) => {
     tasksListSection.classList.remove('hidden');
 
     cargarTareasServidor(usuario.id); // Cargamos las tareas del usuario encontrado para mostrarlas en pantalla
-    
+
     // Vaciamos el contenedor de tarjetas por si acaso pertenecían al usuario anterior
     // if (tasksContainer) tasksContainer.innerHTML = '';
     // Reiniciamos el contador de tareas a cero
