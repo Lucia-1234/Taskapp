@@ -122,7 +122,7 @@ LAYOUT PRINCIPAL
    ============================================ */
 
 .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -284,6 +284,10 @@ BOTONES
     font-size: var(--font-size-lg);
 }
 
+.buttons-card{
+    display: flex;
+    gap: 10px;
+}
 /* ============================================
 SECCIÓN DE MENSAJES
    ============================================ */
@@ -414,6 +418,15 @@ SECCIÓN DE MENSAJES
     word-wrap: break-word;
 }
 
+.texto--buscando{ 
+    color: var(--color-text-secondary); 
+}
+.texto--exito{ 
+    color: var(--color-success); 
+}
+.texto--error{ 
+    color: var(--color-error); 
+}
 
 /* ============================================
 ANIMACIONES
