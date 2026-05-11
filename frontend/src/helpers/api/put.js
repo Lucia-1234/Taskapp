@@ -3,9 +3,9 @@
  * Propósito: Proveer una función auxiliar para actualizar datos en el servidor mediante HTTP PUT.
  */
 
-const url = "http://localhost:3000/"
+import { url } from "./config.js"
 
-export const actualizar = async (endpoint, datos) => {
+export const update = async (endpoint, datos) => {
     try {
         const respuesta = await fetch(`${url}${endpoint}`, {
             method: 'PUT',

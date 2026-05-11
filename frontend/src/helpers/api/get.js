@@ -3,9 +3,9 @@
  * Propósito: Proveer una función auxiliar (helper) para realizar peticiones HTTP GET.
  */
 
-const url = "http://localhost:3000/"
+import { url } from "./config.js"
 
-export const obtener = async (endpoint) => {
+export const get = async (endpoint) => {
   try {
     const respuesta = await fetch(`${url}${endpoint}`);
     

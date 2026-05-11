@@ -3,9 +3,9 @@
  * Propósito: Proveer una función auxiliar para enviar datos al servidor (crear recursos) mediante HTTP POST.
  */
 
-const url = "http://localhost:3000/"
+import { url } from "./config.js"
 
-export const enviar = async (endpoint, datos) => {
+export const post = async (endpoint, datos) => {
   try {
     const respuesta = await fetch(`${url}${endpoint}`, {
       method: 'POST',

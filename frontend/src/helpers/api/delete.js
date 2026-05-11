@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/";
+import { url } from "./config.js"
 
 export const delet = async(endpoint, data) => {
     try {
@@ -6,12 +6,11 @@ export const delet = async(endpoint, data) => {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json", // Inform server of data format
-            },
-            body: JSON.stringify(data),
+            }
         });
         
         if (!respuesta.ok) {
-        throw new Error(`Error GET: ${respuesta.status} ${respuesta.statusText}`);
+        throw new Error(`Error DELETE: ${respuesta.status} ${respuesta.statusText}`);
         }
         
         return await respuesta.json();
