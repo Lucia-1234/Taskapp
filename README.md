@@ -1,4 +1,4 @@
-# PROYECTO BASE: TAskApp - Software Factory SENA
+# PROYECTO BASE: [To do task App] - Software Factory SENA
 
 **Metodología:** *"Del Requerimiento al Producto"*
 
@@ -207,11 +207,11 @@ En la industria, el software que no está publicado no existe. Esto vincula el r
 
 ## DIRECCIÓN DEL PROYECTO
 
-- **Instructor:** [Tu Nombre Aquí]  
+- **Instructor:** [John Freddy Becerra Castellanos]  
 - **Institución:** Servicio Nacional de Aprendizaje (SENA)  
-- **Centro:** [Nombre de tu Centro de Formación]  
+- **Centro:** [Centro Industrial de Mantenimiento Integral]  
 - **Programa:** Análisis y Desarrollo de Software  
 
 ---
 
-Este repositorio es propiedad del equipo de desarrollo y se rige por las políticas de formación profesional integral del SENA.
+Este repositorio es propiedad del equipo de desarrollo y se rige por las políticas de formación profesional integral del SENA.  
