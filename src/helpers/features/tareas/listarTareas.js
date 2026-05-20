@@ -7,6 +7,7 @@ import { obtenerUsuariosCache } from '../usuarios/buscarUsuario.js';
 import { ordenarTareas } from './ordenarTareas.js';
 
 let cacheTareas = [];
+let tareasVisiblesCache = [];
 let filtrosInicializados = false;
 
 export const filtrarYRenderizarTareas = () => {
@@ -54,6 +55,9 @@ export const filtrarYRenderizarTareas = () => {
 
     // 2. Ordenar las tareas filtradas utilizando el módulo de ordenamiento dinámico (RF02)
     const tareasOrdenadas = ordenarTareas(tareasFiltradas, criterioSeleccionado, direccionSeleccionada);
+
+    // Almacenar las tareas visibles ordenadas en la caché para posibilitar su exportación (RF04)
+    tareasVisiblesCache = tareasOrdenadas;
 
     // Vaciar el contenedor del DOM para evitar duplicar las tareas al repintar
     tareaContainer.innerHTML = "";
@@ -147,3 +151,6 @@ export const cargarTareasServidor = async (userId, esLogin = false) => {
         console.error("Error al cargar tareas:", error);
     }
 };
+
+// Exportar la función getter para obtener el listado de tareas visibles (RF04)
+export const obtenerTareasVisibles = () => tareasVisiblesCache;

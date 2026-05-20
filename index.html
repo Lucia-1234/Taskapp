@@ -69,7 +69,10 @@
         <section class="messages-section hidden" id="tasksListSection">
             <div class="messages-header">
                 <h2 class="messages-header__title">Tareas Registradas</h2>
-                <span class="messages-header__count" id="taskCount">0 tareas</span>
+                <div class="messages-header__actions">
+                    <span class="messages-header__count" id="taskCount">0 tareas</span>
+                    <button id="btnExportarTareas" class="btn btn--secondary btn--sm">Exportar JSON</button>
+                </div>
             </div>
 
             <!-- Filtros y Ordenamiento (RF01 & RF02) -->
