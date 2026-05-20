@@ -1,4 +1,5 @@
 import { get } from '../../api/index.js';
+import { notificarExito, notificarError } from '../notificaciones/mostrarNotificacion.js';
 
 let usuariosCache = [];
 
@@ -78,6 +79,8 @@ export const inicializarBusquedaUsuario = (alEncontrarUsuario) => {
 
         resultadoUsuario.textContent = `Usuario: ${usuario.name} | Está activo: ${usuario.active}`;
 
+        notificarExito(`¡Bienvenido/a, ${usuario.name}!`);
+
         alEncontrarUsuario(usuario);
 
       }
@@ -87,6 +90,8 @@ export const inicializarBusquedaUsuario = (alEncontrarUsuario) => {
       resultadoUsuario.className = "texto--error";
 
       resultadoUsuario.textContent = "Usuario no encontrado.";
+
+      notificarError("Usuario no encontrado.");
 
       alEncontrarUsuario(null);
 
