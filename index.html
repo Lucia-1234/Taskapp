@@ -18,6 +18,10 @@
     <section class="form-section">
         <div class="card">
             <h2 class="card__title">Buscar Usuario</h2>
+            <div id="listaUsuariosDisponibles" class="user-list-container hidden">
+                <div class="user-list-title">Usuarios Disponibles</div>
+                <div id="usuariosItemsContainer"></div>
+            </div>
             <form id="formUsuario" class="form" novalidate>
             <div class="form__group">
                 <label for="usuarioId" class="form__label">ID de Usuario</label>
@@ -67,6 +71,28 @@
                 <h2 class="messages-header__title">Tareas Registradas</h2>
                 <span class="messages-header__count" id="taskCount">0 tareas</span>
             </div>
+
+            <div class="filters-card">
+                <div class="filters-card__title">Filtros Avanzados</div>
+                <div class="filters-grid">
+                    <div class="form__group">
+                        <label for="filterEstado" class="form__label">Estado</label>
+                        <select id="filterEstado" class="form__input">
+                            <option value="todos">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en-progreso">En Progreso</option>
+                            <option value="completada">Completada</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label for="filterUsuario" class="form__label">Usuario asignado</label>
+                        <select id="filterUsuario" class="form__input">
+                            <option value="todos">Todos los usuarios</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div id="tasksContainer" class="messages-container">
                 <!-- Las tareas se agregarán aquí dinámicamente -->
             </div>
