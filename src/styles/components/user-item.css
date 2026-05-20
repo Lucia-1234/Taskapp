@@ -1,0 +1,86 @@
+/* ============================================
+FILTROS Y SELECTORES DE USUARIO (RF01)
+   ============================================ */
+
+.filters-card {
+    margin-bottom: var(--spacing-lg);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-gray-100);
+}
+
+.filters-card__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.filters-grid {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.filters-grid .form__group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+.user-list-container {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-200);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.user-list-title {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-gray-200);
+    padding-bottom: var(--spacing-xs);
+}
+
+.user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    font-size: var(--font-size-sm);
+}
+
+.user-item:last-child {
+    border-bottom: none;
+}
+
+.user-item__info {
+    color: var(--color-text-primary);
+}
+
+.user-item__btn {
+    padding: 4px 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    background-color: var(--color-primary-lighter);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.user-item__btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+}

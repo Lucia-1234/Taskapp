@@ -1,0 +1,21 @@
+/* ==========================================================================
+   MAIN STYLESHEET ENTRY POINT
+   Combina todas las hojas de estilo modularizadas mediante directivas @import.
+   ========================================================================== */
+
+/* 1. Capa Global (Configuración, Custom Properties y Reset) */
+@import "./global/custom-properties.css";
+@import "./global/reset.css";
+
+/* 2. Capa de Layout (Estructura de la página y Body) */
+@import "./layout/layout.css";
+
+/* 3. Capa de Componentes Reutilizables */
+@import "./components/animations.css";
+@import "./components/card.css";
+@import "./components/form.css";
+@import "./components/button.css";
+@import "./components/task-card.css";
+@import "./components/user-item.css";
+@import "./components/notification.css";
+@import "./components/utilities.css";
