@@ -1,0 +1,23 @@
+/* ============================================
+CLASES DE UTILIDAD Y COLORES SEMÁNTICOS
+   ============================================ */
+
+.hidden {
+    display: none !important;
+}
+
+.fade-out {
+    animation: fadeOut var(--transition-base) ease-out forwards;
+}
+
+.texto--buscando {
+    color: var(--color-text-secondary);
+}
+
+.texto--exito {
+    color: var(--color-success);
+}
+
+.texto--error {
+    color: var(--color-error);
+}
