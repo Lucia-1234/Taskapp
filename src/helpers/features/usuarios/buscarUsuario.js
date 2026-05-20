@@ -1,5 +1,6 @@
 import { get } from '../../api/index.js';
 import { notificarExito, notificarError } from '../notificaciones/mostrarNotificacion.js';
+import { userItem } from '../../../components/userItem.js';
 
 let usuariosCache = [];
 
@@ -26,26 +27,14 @@ export const inicializarBusquedaUsuario = (alEncontrarUsuario) => {
         listContainer.classList.remove("hidden");
         container.innerHTML = "";
         usuarios.forEach(user => {
-          const item = document.createElement("div");
-          item.className = "user-item";
-
-          const info = document.createElement("span");
-          info.className = "user-item__info";
-          info.textContent = `ID: ${user.id} - ${user.name} (${user.active ? 'Activo' : 'Inactivo'})`;
-
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "user-item__btn";
-          btn.textContent = "Seleccionar";
-          btn.addEventListener("click", () => {
+          // Generar el nodo DOM del item usando el componente dedicado
+          const item = userItem(user, () => {
             const usuarioIdInput = document.querySelector("#usuarioId");
             if (usuarioIdInput) {
               usuarioIdInput.value = user.id;
               formUsuario.dispatchEvent(new Event("submit"));
             }
           });
-
-          item.append(info, btn);
           container.append(item);
         });
       }

@@ -1,65 +1,30 @@
-import { update } from '../../api/index.js';
-import { cargarTareasServidor } from './listarTareas.js';
-import { notificarExito, notificarError } from '../notificaciones/mostrarNotificacion.js';
+// Carga los datos de una tarea en el formulario HTML y muestra la vista de edición.
+export const editarTarea = (tarea) => {
+    // 1. Obtener las referencias a los campos de edición del DOM
+    const inputId = document.querySelector("#editTareaId");
+    const inputTitulo = document.querySelector("#editTareaTitulo");
+    const inputDescripcion = document.querySelector("#editTareaDescripcion");
+    const inputEstado = document.querySelector("#editTareaEstado");
+    const inputUsuario = document.querySelector("#editTareaUsuario");
 
-// Edita una tarea existente y actualiza la lista de tareas.
-export const editarTarea = async(tarea) => {
+    // 2. Obtener las referencias a las secciones de la interfaz para alternar visibilidad
+    const seccionEdicion = document.querySelector("#editTaskSection");
+    const seccionCreacion = document.querySelector("#taskSection");
 
-    const nuevoTitulo = prompt("Nuevo título:", tarea.title);
+    // Validar que todos los elementos del DOM existan en la página antes de manipularlos
+    if (inputId && inputTitulo && inputDescripcion && inputEstado && inputUsuario && seccionEdicion && seccionCreacion) {
+        // 3. Poblar los campos del formulario con los atributos actuales de la tarea seleccionada
+        inputId.value = tarea.id;
+        inputTitulo.value = tarea.title || "";
+        inputDescripcion.value = tarea.description || tarea.Tarea || "";
+        inputEstado.value = tarea.status || "pendiente";
+        inputUsuario.value = tarea.userId || "";
 
-    if (nuevoTitulo === null) return;
+        // 4. Mostrar la vista de edición y ocultar la de creación en el documento
+        seccionEdicion.classList.remove("hidden");
+        seccionCreacion.classList.add("hidden");
 
-    const descripcionActual = tarea.description || tarea.Tarea || "";
-    const nuevaDescripcion = prompt("Nueva descripción:", descripcionActual);
-
-    if (nuevaDescripcion === null) return;
-
-    // Pedir estado nuevo
-    const nuevoEstado = prompt("Nuevo estado (pendiente, en-progreso, completada):", tarea.status || "pendiente");
-    if (nuevoEstado === null) return;
-    const estadoLimpio = nuevoEstado.trim().toLowerCase();
-    if (estadoLimpio !== "pendiente" && estadoLimpio !== "en-progreso" && estadoLimpio !== "completada") {
-        notificarError("Estado inválido. Debe ser 'pendiente', 'en-progreso' o 'completada'.");
-        return;
+        // 5. Desplazar la pantalla suavemente hasta el formulario de edición para centrar la atención del usuario
+        seccionEdicion.scrollIntoView({ behavior: "smooth" });
     }
-
-    // Pedir ID de usuario asignado nuevo
-    const nuevoUsuarioId = prompt("Nuevo ID de usuario asignado:", tarea.userId);
-    if (nuevoUsuarioId === null) return;
-    const usuarioIdNum = Number(nuevoUsuarioId);
-    if (isNaN(usuarioIdNum) || usuarioIdNum <= 0) {
-        notificarError("ID de usuario inválido.");
-        return;
-    }
-
-    if (!nuevoTitulo.trim()) {
-        notificarError("El título no puede estar vacío.");
-        return;
-    }
-
-    if (!nuevaDescripcion.trim()) {
-        notificarError("La descripción no puede estar vacía.");
-        return;
-    }
-
-    const tareaActualizada = {
-        ...tarea,
-        title: nuevoTitulo.trim(),
-        description: nuevaDescripcion.trim(),
-        Tarea: nuevaDescripcion.trim(),
-        status: estadoLimpio,
-        userId: usuarioIdNum,
-        completed: estadoLimpio === "completada",
-        createdAt: tarea.createdAt || new Date().toISOString().split('T')[0]
-    };
-
-    try {
-        await update(`task/${tarea.id}`, tareaActualizada);
-        notificarExito("Tarea actualizada exitosamente.");
-        await cargarTareasServidor(tarea.userId);
-    } catch (error) {
-        console.error("Error al actualizar tarea:", error);
-        notificarError("Error al actualizar la tarea.");
-    }
-
-}
+};
