@@ -1,5 +1,6 @@
 import { post } from '../../api/index.js';
 import { cargarTareasServidor } from './listarTareas.js';
+import { notificarExito, notificarError } from '../notificaciones/mostrarNotificacion.js';
 
 // Inicializa la lógica de creación de nuevas tareas.
 export const inicializarCrearTarea = (usuarioActual) => {
@@ -29,12 +30,12 @@ export const inicializarCrearTarea = (usuarioActual) => {
         };
 
         if (!nuevaTarea.title) {
-            alert("El título está vacío.");
+            notificarError("El título no puede estar vacío.");
             return;
         }
 
         if (!nuevaTarea.description) {
-            alert("La descripción está vacía.");
+            notificarError("La descripción no puede estar vacía.");
             return;
         }
 
@@ -44,11 +45,14 @@ export const inicializarCrearTarea = (usuarioActual) => {
 
             formTarea.reset();
 
+            notificarExito("Tarea registrada exitosamente.");
+
             await cargarTareasServidor(usuarioActual().id);
 
         } catch (error) {
 
             console.error("Error al crear tarea:", error);
+            notificarError("Error al registrar la tarea.");
 
         }
 

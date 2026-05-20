@@ -1,5 +1,6 @@
 import { update } from '../../api/index.js';
 import { cargarTareasServidor } from './listarTareas.js';
+import { notificarExito, notificarError } from '../notificaciones/mostrarNotificacion.js';
 
 // Edita una tarea existente y actualiza la lista de tareas.
 export const editarTarea = async(tarea) => {
@@ -18,7 +19,7 @@ export const editarTarea = async(tarea) => {
     if (nuevoEstado === null) return;
     const estadoLimpio = nuevoEstado.trim().toLowerCase();
     if (estadoLimpio !== "pendiente" && estadoLimpio !== "en-progreso" && estadoLimpio !== "completada") {
-        alert("Estado inválido. Debe ser 'pendiente', 'en-progreso' o 'completada'.");
+        notificarError("Estado inválido. Debe ser 'pendiente', 'en-progreso' o 'completada'.");
         return;
     }
 
@@ -27,17 +28,17 @@ export const editarTarea = async(tarea) => {
     if (nuevoUsuarioId === null) return;
     const usuarioIdNum = Number(nuevoUsuarioId);
     if (isNaN(usuarioIdNum) || usuarioIdNum <= 0) {
-        alert("ID de usuario inválido.");
+        notificarError("ID de usuario inválido.");
         return;
     }
 
     if (!nuevoTitulo.trim()) {
-        alert("El título no puede estar vacío.");
+        notificarError("El título no puede estar vacío.");
         return;
     }
 
     if (!nuevaDescripcion.trim()) {
-        alert("La descripción no puede estar vacía.");
+        notificarError("La descripción no puede estar vacía.");
         return;
     }
 
@@ -52,8 +53,13 @@ export const editarTarea = async(tarea) => {
         createdAt: tarea.createdAt || new Date().toISOString().split('T')[0]
     };
 
-    await update(`task/${tarea.id}`, tareaActualizada);
-
-    await cargarTareasServidor(tarea.userId);
+    try {
+        await update(`task/${tarea.id}`, tareaActualizada);
+        notificarExito("Tarea actualizada exitosamente.");
+        await cargarTareasServidor(tarea.userId);
+    } catch (error) {
+        console.error("Error al actualizar tarea:", error);
+        notificarError("Error al actualizar la tarea.");
+    }
 
 }
