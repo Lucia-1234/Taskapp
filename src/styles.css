@@ -406,6 +406,8 @@ SECCIÓN DE MENSAJES
 }
 
 .message-card__timestamp {
+    display: block;
+    margin-top: var(--spacing-sm);
     font-size: var(--font-size-xs);
     color: var(--color-text-tertiary);
     font-weight: var(--font-weight-medium);

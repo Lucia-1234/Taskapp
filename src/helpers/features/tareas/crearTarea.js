@@ -13,9 +13,7 @@ export const inicializarCrearTarea = (usuarioActual) => {
         if (!usuarioActual()) return;
 
         const tituloInput = document.querySelector("#tareaTitulo");
-
         const descInput = document.querySelector("#tareaDescripcion");
-
         const estadoInput = document.querySelector("#tareaEstado");
 
         const contenidoTarea = descInput.value.trim();
@@ -26,7 +24,8 @@ export const inicializarCrearTarea = (usuarioActual) => {
             Tarea: contenidoTarea,
             status: estadoInput.value,
             userId: Number(usuarioActual().id),
-            completed: estadoInput.value === "completada"
+            completed: estadoInput.value === "completada",
+            createdAt: new Date().toISOString().split('T')[0]
         };
 
         if (!nuevaTarea.title) {

@@ -72,8 +72,9 @@
                 <span class="messages-header__count" id="taskCount">0 tareas</span>
             </div>
 
+            <!-- Filtros y Ordenamiento (RF01 & RF02) -->
             <div class="filters-card">
-                <div class="filters-card__title">Filtros Avanzados</div>
+                <div class="filters-card__title">Filtros y Ordenamiento</div>
                 <div class="filters-grid">
                     <div class="form__group">
                         <label for="filterEstado" class="form__label">Estado</label>
@@ -88,6 +89,21 @@
                         <label for="filterUsuario" class="form__label">Usuario asignado</label>
                         <select id="filterUsuario" class="form__input">
                             <option value="todos">Todos los usuarios</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label for="sortCriterio" class="form__label">Ordenar por</label>
+                        <select id="sortCriterio" class="form__input">
+                            <option value="fecha">Fecha de creación</option>
+                            <option value="nombre">Nombre de la tarea</option>
+                            <option value="estado">Estado</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label for="sortDireccion" class="form__label">Dirección</label>
+                        <select id="sortDireccion" class="form__input">
+                            <option value="desc">Descendente</option>
+                            <option value="asc">Ascendente</option>
                         </select>
                     </div>
                 </div>

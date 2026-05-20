@@ -14,7 +14,11 @@ export const taskCard = (task, onEliminar, onEditar) => {
     tarea.classList.add("message-card__content");
     tarea.textContent = task.description || task.Tarea || '';
 
-    card_contenedor.append(title, tarea);
+    const fecha = document.createElement("span");
+    fecha.classList.add("message-card__timestamp");
+    fecha.textContent = task.createdAt ? `Creado: ${task.createdAt}` : "Sin fecha";
+
+    card_contenedor.append(title, tarea, fecha);
 
     const buttons = document.createElement("div");
     buttons.classList.add("buttons-card");
