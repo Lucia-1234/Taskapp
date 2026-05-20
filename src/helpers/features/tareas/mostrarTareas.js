@@ -13,7 +13,7 @@ export const mostrarVistaTareas = (usuario) => {
 
         tasksListSection.classList.remove("hidden");
 
-        cargarTareasServidor(Number(usuario.id));
+        cargarTareasServidor(Number(usuario.id), true);
 
     } else {
 
