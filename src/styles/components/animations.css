@@ -20,3 +20,9 @@ ANIMACIONES GLOBALES Y DE ELEMENTOS
         transform: scale(0.95);
     }
 }
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -48,7 +48,7 @@ BOTONES Y CONTENEDORES
 
 .buttons-card {
     display: flex;
-    gap: 10px;
+    gap: var(--spacing-sm);
 }
 
 .btn--secondary {
@@ -72,6 +72,22 @@ BOTONES Y CONTENEDORES
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: var(--font-size-sm);
     border-radius: var(--radius-sm);
+}
+
+.btn--danger {
+    background-color: var(--color-error);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn--danger:hover {
+    background-color: #dc2626; /* Rojo más oscuro para feedback visual */
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.btn--danger:active {
+    transform: translateY(0);
 }
 
 @media (max-width: 480px) {

@@ -1,5 +1,3 @@
-import { inicializarTareas } from '../helpers/features/tareas/init.js';
-
-console.log("Aplicación iniciada");
+import { inicializarTareas } from '@/modulos/tareas/index.js';
 
 inicializarTareas();

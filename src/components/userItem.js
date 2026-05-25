@@ -1,38 +1,49 @@
 /**
- * Componente que representa un item de usuario dentro de la lista de selección.
- * Retorna un elemento del DOM completamente estructurado.
+ * @file userItem.js
+ * @description Componente funcional de UI que genera dinámicamente un nodo del DOM para representar un ítem de usuario seleccionable.
+ */
+
+/**
+ * Crea y retorna el elemento HTML para un usuario de la lista, con un botón para seleccionarlo.
+ * 
+ * @param {Object} user - Datos del usuario a representar.
+ * @param {string} user.id - Identificador único del usuario.
+ * @param {string} user.name - Nombre del usuario.
+ * @param {boolean} user.active - Estado de actividad del usuario (activo o inactivo).
+ * @param {function} onSelect - Callback que se ejecuta cuando el usuario es seleccionado.
+ * @returns {HTMLDivElement} El nodo div contenedor del ítem del usuario.
  */
 export const userItem = (user, onSelect) => {
-    // 1. Crear el contenedor principal para el item de usuario
+    // Crea el elemento div que servirá como contenedor principal del ítem de usuario.
     const item = document.createElement("div");
-    // Asignar el nombre de la clase CSS para el contenedor
+    // Agrega la clase CSS encargada de dar formato de fila y diseño al ítem de usuario.
     item.className = "user-item";
 
-    // 2. Crear la etiqueta span que mostrará la información de ID y Nombre
+    // Crea el elemento span para mostrar la información del usuario en texto.
     const info = document.createElement("span");
-    // Asignar la clase CSS para el span
+    // Agrega la clase encargada de definir el tamaño y color del texto del usuario.
     info.className = "user-item__info";
-    // Inyectar el texto formateado de forma segura sin usar innerHTML
+    // Construye y asigna el texto descriptivo incluyendo ID, nombre y una traducción legible de su estado activo.
     info.textContent = `ID: ${user.id} - ${user.name} (${user.active ? 'Activo' : 'Inactivo'})`;
 
-    // 3. Crear el botón de acción para seleccionar el usuario
+    // Crea el elemento botón para realizar la selección del usuario.
     const btn = document.createElement("button");
-    // Asignar el tipo de elemento HTML
+    // Especifica explícitamente el tipo de botón como 'button' para prevenir el envío accidental de formularios.
     btn.type = "button";
-    // Agregar la clase del botón definida en styles.css
+    // Aplica la clase correspondiente a los botones internos de ítems de la lista.
     btn.className = "user-item__btn";
-    // Asignar el texto visible
+    // Define el texto visible del botón.
     btn.textContent = "Seleccionar";
     
-    // 4. Asignar el escuchador de eventos click al botón
+    // Añade el escuchador de eventos de clic al botón para disparar la selección.
     btn.addEventListener("click", () => {
-        // Ejecutar el callback de retorno con la información del usuario
+        // Ejecuta el callback de selección pasando el objeto de usuario como argumento.
         onSelect(user);
     });
 
-    // 5. Agregar el texto de información y el botón al contenedor principal
+    // Añade el span de información y el botón de selección al contenedor principal del ítem.
     item.append(info, btn);
 
-    // Retornar el elemento DOM del componente listo para ser renderizado
+    // Retorna el elemento del DOM completamente construido y enlazado a eventos.
     return item;
 };
